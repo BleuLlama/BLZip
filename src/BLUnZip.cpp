@@ -233,7 +233,7 @@ long BLUnZip::SizeOfItem( int idx )
 
 ////////////////////////////////////////////////////////////////////////////////
 // get the content to RAM
-int ZipExtractRAM( zipFile zf, int idx, char * buf, long bufsz, std::string pw )
+int BLUnZip::ExtractToRAM( int idx, char * buf, long bufsz, std::string pw )
 {
 	const char * password = NULL; // TODO: password!
 	int i = 0;
@@ -246,18 +246,18 @@ int ZipExtractRAM( zipFile zf, int idx, char * buf, long bufsz, std::string pw )
 		password = pw.c_str();
 	}
 	
-	unzGoToFirstFile( zf );
+	unzGoToFirstFile( this->zf );
 	
 	do {
 		if( i == idx ) {
-			//err = unzOpenCurrentFile( zf );
-        		err = unzOpenCurrentFilePassword(zf,password);
-                	err = unzReadCurrentFile(zf,buf,bufsz);
-			unzCloseCurrentFile( zf );
+			//err = unzOpenCurrentFile( this->zf );
+        		err = unzOpenCurrentFilePassword(this->zf,password);
+                	err = unzReadCurrentFile(this->zf,buf,bufsz);
+			unzCloseCurrentFile( this->zf );
 			return err;
 		}
 		i++;
-	} while( (unzGoToNextFile( zf )) == UNZ_OK );
+	} while( (unzGoToNextFile( this->zf )) == UNZ_OK );
 
 	return 0;
 }
@@ -271,7 +271,7 @@ std::string BLUnZip::ExtractToString( int idx, std::string password )
 	sz *= sizeof( char );
 	char * buf = (char *)malloc( sz );
 
-	ZipExtractRAM( this->zf, idx, buf, sz, password ); 
+	this->ExtractToRAM( idx, buf, sz, password ); 
 	buf[ sz-1 ] = '\0'; // force.
 
 	std::string ret( buf );

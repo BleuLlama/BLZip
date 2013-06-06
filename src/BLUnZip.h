@@ -75,6 +75,7 @@ public:
 
 	std::string NameOfItem( int idx );
 	long SizeOfItem( int idx );
+	int ExtractToRAM( int idx, char * buf, long bufsz, std::string pw="" );
 	std::string ExtractToString( int idx, std::string password="" );
 
 public:
