@@ -1,13 +1,30 @@
-# Compiled Object files
-*.slo
-*.lo
+# Object files
 *.o
 
-# Compiled Dynamic libraries
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
 *.so
+*.so.*
 *.dylib
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# Executables
+*.exe
+*.out
+*.app
+
+# temp files
+*.swp
+*~
+
+saved/
+
+.DS_Store
+example
+example.exe
+contrib/zlib-1.2.8
+
+wad.zip
