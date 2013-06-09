@@ -175,6 +175,28 @@ int BLUnZip::IndexOfItem( std::string itemName )
 	}
 	return -1;
 }
+
+void BLUnZip::ListOfItems( std::vector<std::string>& listing )
+{
+	unzGoToFirstFile( zf );
+
+	listing.clear();
+	do {
+		char filename_inzip[256];
+		unz_file_info64 file_info;
+		int err;
+
+		err = unzGetCurrentFileInfo64(zf, &file_info,
+			filename_inzip,sizeof(filename_inzip),
+			//buf, bufsz,
+			NULL,0,NULL,0);
+		if (err!=UNZ_OK) return;
+
+		std::string s( filename_inzip );
+		listing.push_back( s );
+	} while( (unzGoToNextFile( zf )) == UNZ_OK );
+}
+
 std::string BLUnZip::NameOfItem( int idx )
 {
 	std::string ret( "" );

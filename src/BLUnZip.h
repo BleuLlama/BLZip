@@ -36,6 +36,7 @@ THE SOFTWARE.
 
 
 #include <iostream>
+#include <vector>
 
 extern "C"
 {
@@ -73,6 +74,7 @@ public:
 
 	int IndexOfItem( std::string itemName );
 
+	void ListOfItems( std::vector<std::string>& listing );
 	std::string NameOfItem( int idx );
 	long SizeOfItem( int idx );
 	int ExtractToRAM( int idx, char * buf, long bufsz, std::string pw="" );
