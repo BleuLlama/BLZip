@@ -76,8 +76,6 @@ BLUnZip::BLUnZip( std::string _filename )
 	: filename( _filename )
 	, valid( false )
 {
-	std::cout << "Zip file starting with " << filename << std::endl;
-
 	// make sure it exists
 	//if( !ZipFileExists( (char *) _filename.c_str() )) return;
 
