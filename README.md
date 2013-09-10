@@ -34,3 +34,6 @@ From the minizip project, the only files we're re-using are ioapi.c,
 unzip.c and zip.c  Feel free to just include those (and the .h files
 obviously) in your project instead of building the minMinizip.a if
 you'd like.  That should work fine.
+
+Note that on windows, you may need some additional files, including
+iowin32.c and crypt.h
